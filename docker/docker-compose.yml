@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  llama-api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - MODEL_CACHE=/app/models
+    volumes:
+      - model_cache:/app/models
+    restart: unless-stopped
+
+volumes:
+  model_cache:
